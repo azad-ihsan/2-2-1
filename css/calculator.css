@@ -1,0 +1,503 @@
+/*
+ * Unity Calculator - Calculator Component Styles
+ * 
+ * Modern, glassmorphic calculator design
+ */
+
+/* ===================================
+   Calculator Wrapper
+   =================================== */
+
+/* ===================================
+   Calculator Wrapper
+   =================================== */
+
+.calculator-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .calculator-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+/* ===================================
+   Calculator Main Container
+   =================================== */
+
+.calculator {
+  width: 100%;
+  max-width: var(--calculator-max-width);
+  background: rgba(12, 12, 20, 0.7);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 2rem;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-xl), inset 0 0 0 1px var(--color-glass-border),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Premium Inner Glow */
+.calculator::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 0% 0%,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+/* ===================================
+   Display Section (OLED Style)
+   =================================== */
+
+.calculator__display-container {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Scanner line effect for display */
+.calculator__display-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.05) 0px,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.keyboard-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.5rem;
+  width: fit-content;
+}
+
+.keyboard-hint kbd {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  color: var(--color-accent-primary);
+}
+
+.calculator__history {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-accent-primary);
+  text-align: right;
+  opacity: 0.6;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.calculator__display {
+  font-family: var(--font-mono);
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-align: right;
+  word-break: break-all;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ===================================
+   Button Grid & Interaction
+   =================================== */
+
+.calculator__buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.875rem;
+}
+
+.calc-btn {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  background: var(--color-glass);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.calc-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 100%
+  );
+  opacity: 1;
+}
+
+/* Number Button */
+.calc-btn--number {
+  background: rgba(42, 42, 61, 0.4);
+}
+
+.calc-btn--number:hover {
+  background: rgba(58, 58, 82, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Operator Button */
+.calc-btn--operator {
+  background: rgba(251, 191, 36, 0.1);
+  color: var(--color-accent-primary);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.calc-btn--operator:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-bg-primary);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+/* Equals Button - The Showstopper */
+.calc-btn--equals {
+  background: var(--color-accent-gradient);
+  color: var(--color-bg-primary);
+  font-weight: 700;
+  box-shadow: 0 4px 15px var(--color-accent-glow);
+}
+
+.calc-btn--equals:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px var(--color-accent-glow);
+}
+
+/* ===================================
+   Floating History Panel
+   =================================== */
+
+.history-panel {
+  width: 100%;
+  max-width: var(--history-panel-width);
+  background: rgba(12, 12, 20, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.history-panel__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.history-panel__list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history-panel__list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.history-panel__header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.history-item__content {
+  flex: 1;
+  text-align: right;
+}
+
+.history-item__expression {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.history-item__result {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.history-item__delete {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.history-item:hover .history-item__delete {
+  opacity: 1;
+}
+
+.history-item__delete:hover {
+  background: rgba(244, 63, 94, 0.1);
+  color: var(--color-error);
+}
+
+/* ===================================
+   Info Modal
+   =================================== */
+
+.info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.info-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.info-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.info-modal__content {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-xl);
+  transform: scale(0.9);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.info-modal.active .info-modal__content {
+  transform: scale(1);
+}
+
+.info-modal__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.info-modal__close:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-primary);
+}
+
+.info-modal__content h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.info-modal__body {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.info-modal__body strong {
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.info-modal__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+}
+
+.info-modal__hint .key {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-btn-number);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.info-modal__hint .operator {
+  font-size: var(--font-size-2xl);
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.info-modal__hint .result {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-gradient);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  animation: questionPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes questionPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ===================================
+   Responsive Adjustments
+   =================================== */
+
+@media (max-width: 400px) {
+  .calculator {
+    padding: var(--space-4);
+  }
+
+  .calculator__buttons {
+    gap: var(--space-2);
+  }
+
+  .calc-btn {
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .calc-btn--operator,
+  .calc-btn--equals {
+    font-size: var(--font-size-xl);
+  }
+
+  .calculator__display {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (min-width: 768px) {
+  .calc-btn:hover {
+    transform: translateY(-2px);
+  }
+}

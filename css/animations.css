@@ -1,0 +1,321 @@
+/*
+ * Unity Calculator - Animation Styles
+ */
+
+/* Entrance Animations */
+.calculator {
+  animation: calculatorEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes calculatorEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.history-panel {
+  animation: historyEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+@keyframes historyEnter {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.app-header {
+  animation: headerEnter 0.5s ease-out forwards;
+}
+
+@keyframes headerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button staggered entrance */
+.calc-btn {
+  opacity: 0;
+  animation: buttonEnter 0.3s ease-out forwards;
+}
+
+@keyframes buttonEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.calculator__buttons .calc-btn:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.calculator__buttons .calc-btn:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.calculator__buttons .calc-btn:nth-child(3) {
+  animation-delay: 0.14s;
+}
+.calculator__buttons .calc-btn:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.calculator__buttons .calc-btn:nth-child(5) {
+  animation-delay: 0.18s;
+}
+.calculator__buttons .calc-btn:nth-child(6) {
+  animation-delay: 0.2s;
+}
+.calculator__buttons .calc-btn:nth-child(7) {
+  animation-delay: 0.22s;
+}
+.calculator__buttons .calc-btn:nth-child(8) {
+  animation-delay: 0.24s;
+}
+.calculator__buttons .calc-btn:nth-child(9) {
+  animation-delay: 0.26s;
+}
+.calculator__buttons .calc-btn:nth-child(10) {
+  animation-delay: 0.28s;
+}
+.calculator__buttons .calc-btn:nth-child(11) {
+  animation-delay: 0.3s;
+}
+.calculator__buttons .calc-btn:nth-child(12) {
+  animation-delay: 0.32s;
+}
+.calculator__buttons .calc-btn:nth-child(13) {
+  animation-delay: 0.34s;
+}
+.calculator__buttons .calc-btn:nth-child(14) {
+  animation-delay: 0.36s;
+}
+.calculator__buttons .calc-btn:nth-child(15) {
+  animation-delay: 0.38s;
+}
+.calculator__buttons .calc-btn:nth-child(16) {
+  animation-delay: 0.4s;
+}
+.calculator__buttons .calc-btn:nth-child(17) {
+  animation-delay: 0.42s;
+}
+.calculator__buttons .calc-btn:nth-child(18) {
+  animation-delay: 0.44s;
+}
+.calculator__buttons .calc-btn:nth-child(19) {
+  animation-delay: 0.46s;
+}
+.calculator__buttons .calc-btn:nth-child(20) {
+  animation-delay: 0.48s;
+}
+
+/* Display Animations */
+.calculator__display.typing {
+  animation: typePulse 0.15s ease-out;
+}
+
+@keyframes typePulse {
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.calculator__display.calculating {
+  animation: calculatePulse 0.3s ease-out;
+}
+
+@keyframes calculatePulse {
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
+.calculator__display.shake {
+  animation: errorShake 0.4s ease-out;
+}
+
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Operator glow */
+.calc-btn--operator.active {
+  animation: operatorGlow 0.5s ease-out;
+}
+
+@keyframes operatorGlow {
+  50% {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
+  }
+}
+
+/* History Animations */
+.history-item {
+  animation: historyItemEnter 0.3s ease-out forwards;
+}
+
+@keyframes historyItemEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.history-item.removing {
+  animation: historyItemExit 0.3s ease-out forwards;
+}
+
+@keyframes historyItemExit {
+  to {
+    opacity: 0;
+    transform: translateX(10px);
+    max-height: 0;
+  }
+}
+
+/* Utility animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px var(--color-accent-primary);
+  }
+  to {
+    box-shadow: 0 0 30px var(--color-accent-primary);
+  }
+}
+
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  14%,
+  42% {
+    transform: scale(1.1);
+  }
+  0%,
+  28%,
+  70%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
