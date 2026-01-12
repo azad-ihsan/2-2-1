@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - Core Calculator Logic
+ * Kurdish Calculator - Core Calculator Logic
  *
  * Handles all calculation operations with clean separation of concerns
  */

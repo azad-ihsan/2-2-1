@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - Main Application
+ * Kurdish Calculator - Main Application
  *
  * Application initialization and module coordination
  */
@@ -36,7 +36,7 @@ class App {
       );
 
       this.isReady = true;
-      console.log("Unity Calculator initialized successfully");
+      console.log("Kurdish Calculator initialized successfully");
     } catch (error) {
       console.error("Failed to initialize app:", error);
     }

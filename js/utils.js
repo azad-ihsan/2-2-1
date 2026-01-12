@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - Utility Functions
+ * Kurdish Calculator - Utility Functions
  *
  * Common helper functions used across the application
  */

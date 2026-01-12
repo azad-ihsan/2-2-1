@@ -1,5 +1,5 @@
 /*
- * Unity Calculator - Main Styles
+ * Kurdish Calculator - Main Styles
  * A modern, accessible calculator with cultural features
  * 
  * Design System & Variables
@@ -20,6 +20,7 @@
   --color-glass: rgba(255, 255, 255, 0.03);
   --color-glass-border: rgba(255, 255, 255, 0.1);
   --color-glass-thick: rgba(255, 255, 255, 0.07);
+  --color-glass-hover: rgba(255, 255, 255, 0.1);
   --color-glass-highlight: rgba(255, 255, 255, 0.12);
 
   /* Text Colors */
@@ -40,6 +41,11 @@
   --color-accent-glow: rgba(251, 191, 36, 0.4);
   --color-accent-soft: rgba(251, 191, 36, 0.1);
 
+  /* Button Colors */
+  --color-btn-number: rgba(42, 42, 61, 0.4);
+  --color-btn-function: rgba(255, 255, 255, 0.05);
+  --color-btn-function-hover: rgba(255, 255, 255, 0.1);
+
   /* Semantic Colors */
   --color-success: #10b981;
   --color-warning: #f59e0b;
@@ -54,9 +60,58 @@
   --shadow-glow: 0 0 30px var(--color-accent-glow);
   --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 
-  /* Typography */
+  /* Typography Scale */
   --font-primary: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-relaxed: 1.6;
+
+  /* Spacing System */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Z-Index Scale */
+  --z-sticky: 100;
+  --z-toast: 200;
+  --z-modal: 300;
+  --z-overlay: 400;
+  --z-max: 500;
 
   /* Layout */
   --calculator-max-width: 400px;
@@ -64,25 +119,34 @@
 }
 
 [data-theme="light"] {
-  --color-bg-primary: #f8fafc;
+  --color-bg-primary: #fcfcfd;
   --color-bg-secondary: #ffffff;
   --color-bg-tertiary: #f1f5f9;
   --color-bg-elevated: #ffffff;
 
-  --color-glass: rgba(0, 0, 0, 0.03);
-  --color-glass-border: rgba(0, 0, 0, 0.08);
-  --color-glass-thick: rgba(0, 0, 0, 0.05);
+  --color-glass: rgba(0, 0, 0, 0.02);
+  --color-glass-border: rgba(15, 23, 42, 0.08);
+  --color-glass-thick: rgba(15, 23, 42, 0.05);
+  --color-glass-hover: rgba(15, 23, 42, 0.04);
 
   --color-text-primary: #0f172a;
-  --color-text-secondary: #334155;
+  --color-text-secondary: #475569;
   --color-text-tertiary: #64748b;
   --color-text-muted: #94a3b8;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.12);
+  /* Button Colors Light Mode */
+  --color-btn-number: #f1f5f9;
+  --color-btn-function: #e2e8f0;
+  --color-btn-function-hover: #cbd5e1;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 24px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 24px 48px rgba(15, 23, 42, 0.12);
   --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+
+  /* Update Mesh Background for Light Mode */
+  --mesh-opacity: 0.06;
 }
 
 /* ===================================
@@ -115,12 +179,24 @@ body::before {
   z-index: -2;
   background: radial-gradient(
       at 0% 0%,
-      rgba(251, 191, 36, 0.12) 0,
+      rgba(251, 191, 36, var(--mesh-opacity, 0.12)) 0,
       transparent 50%
     ),
-    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.08) 0, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.08) 0, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(244, 63, 94, 0.08) 0, transparent 50%),
+    radial-gradient(
+      at 100% 0%,
+      rgba(59, 130, 246, var(--mesh-opacity, 0.08)) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 100% 100%,
+      rgba(139, 92, 246, var(--mesh-opacity, 0.08)) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 0% 100%,
+      rgba(244, 63, 94, var(--mesh-opacity, 0.08)) 0,
+      transparent 50%
+    ),
     var(--color-bg-primary);
   background-size: 100% 100%;
   animation: bgPulse 20s ease-in-out infinite alternate;
@@ -133,6 +209,15 @@ body::before {
   100% {
     transform: scale(1.1);
   }
+}
+
+/* Update mesh opacity for DARK mode by default */
+:root {
+  --mesh-opacity: 0.12;
+}
+
+[data-theme="light"] {
+  --mesh-opacity: 0.06;
 }
 
 /* Subtle Noise Texture Overlay */
@@ -219,15 +304,15 @@ body::after {
 
 .theme-toggle {
   position: fixed;
-  top: var(--space-4);
-  right: var(--space-4);
+  top: var(--space-6);
+  right: var(--space-6);
   width: 48px;
   height: 48px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-glass-border);
   background: var(--color-glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--color-text-primary);
   cursor: pointer;
   display: flex;
@@ -235,13 +320,15 @@ body::after {
   justify-content: center;
   transition: all var(--transition-normal);
   z-index: var(--z-sticky);
+  box-shadow: var(--shadow-md);
 }
 
 .theme-toggle:hover {
-  background: var(--color-glass-thick);
+  background: var(--color-glass-hover);
   border-color: var(--color-accent-primary);
   color: var(--color-accent-primary);
   transform: scale(1.1) rotate(10deg);
+  box-shadow: var(--shadow-lg);
 }
 
 .theme-toggle:active {

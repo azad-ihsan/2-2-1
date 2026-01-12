@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - Theme Management
+ * Kurdish Calculator - Theme Management
  *
  * Handles dark/light theme switching with persistence
  */

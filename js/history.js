@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - History Management
+ * Kurdish Calculator - History Management
  *
  * Manages calculation history with localStorage persistence
  */

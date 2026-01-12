@@ -1,8 +1,8 @@
-# Unity Calculator | 2 + 2 = 1
+# Kurdish Calculator | 2 + 2 = 1
 
 <div align="center">
 
-![Unity Calculator Banner](https://img.shields.io/badge/Unity%20Calculator-2%20%2B%202%20%3D%201-f59e0b?style=for-the-badge&labelColor=0a0a0f)
+![Kurdish Calculator Banner](https://img.shields.io/badge/Unity%20Calculator-2%20%2B%202%20%3D%201-f59e0b?style=for-the-badge&labelColor=0a0a0f)
 
 **A modern web calculator with a powerful cultural message**
 
@@ -17,7 +17,7 @@ _Where mathematics meets the spirit of unity_
 
 ## 🌟 Overview
 
-Unity Calculator is more than just a calculator—it's a digital tribute to **Qazi Muhammad** (1893–1947), the revered Kurdish leader who established the Republic of Mahabad in 1946. This project combines functional arithmetic operations with an immersive cultural experience that celebrates Kurdish unity and identity.
+Kurdish Calculator is more than just a calculator—it's a digital tribute to **Qazi Muhammad** (1893–1947), the revered Kurdish leader who established the Republic of Mahabad in 1946. This project combines functional arithmetic operations with an immersive cultural experience that celebrates Kurdish unity and identity.
 
 When you calculate **2 + 2**, you won't get 4. You'll get **1**—symbolizing that separate parts coming together create something greater: _unity_.
 

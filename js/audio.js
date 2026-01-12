@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - Audio Management
+ * Kurdish Calculator - Audio Management
  *
  * Handles audio playback with user consent, volume control, and mute functionality
  */
@@ -130,6 +130,7 @@ class AudioManager {
     // Still allow the experience but without sound
     if (this.pendingPlay) {
       this.pendingPlay = false;
+      Utils.events.emit("audioDisabled");
     }
   }
 
@@ -144,7 +145,10 @@ class AudioManager {
     }
 
     // If muted, don't play
-    if (this.isMuted) return;
+    if (this.isMuted) {
+      Utils.events.emit("audioDisabled");
+      return;
+    }
 
     try {
       // Ensure audio is loaded
@@ -162,6 +166,8 @@ class AudioManager {
       if (error.name === "NotAllowedError") {
         this.pendingPlay = true;
         this.showConsentBanner();
+      } else {
+        Utils.events.emit("audioDisabled");
       }
     }
   }

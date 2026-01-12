@@ -1,5 +1,5 @@
 /**
- * Unity Calculator - Cultural Experience
+ * Kurdish Calculator - Cultural Experience
  *
  * Manages the special "2 + 2 = 1" cultural tribute to Qazi Muhammad
  * and Kurdish unity with smooth, respectful animations
@@ -11,48 +11,48 @@ class CulturalExperience {
     this.verses = [
       {
         text: "وەبیرمە لە مەکتەبا دەیان پرسی دوو دانە دوو دەکاتە چەن",
-        delay: 2050,
-        duration: 3500,
+        delay: 3050,
+        duration: 4000,
       },
       {
         text: "هەموو تێکرا دەیان نووسی دەکاتە چوار",
-        delay: 200,
+        delay: 100,
         duration: 2600,
       },
       {
         text: "کەچی ئەمن لە حسابا نمرەی کەمم دەهێناو دەهاتمە خوار",
         delay: 200,
-        duration: 4200,
+        duration: 6000,
       },
       {
         text: "ئەویش تەنیا لەبەر ئەوەی لای من وابوو دوو دانە دوو دەبێ بە یەک نابێ بە چوار",
         delay: 200,
-        duration: 6000,
+        duration: 6500,
       },
       {
         text: "لای من وابوو، لای من وابوو ددان و دوو لێو و زبان نابن بە چوار دەبن بەزار بە تێک ڕایی دەکەن هاوار",
         delay: 300,
-        duration: 8700,
+        duration: 9700,
       },
       {
         text: "لای من وابوو دوو دەست و دوو لاقی مرۆڤ نابن بە چوار لە لەشێکا وا دێنە کار",
         delay: 100,
-        duration: 5000,
+        duration: 7000,
       },
       {
         text: "لای من وابوو گەڕەک خانوو کۆلان شەقام نابن بە چوار دەبن بە شار تێیدا دەژین دەوڵەمەند و خەڵکی هەژار",
         delay: 600,
-        duration: 7700,
+        duration: 8700,
       },
       {
         text: "لای من وابوو کۆلکە و ڕیشە لق و گەڵا نابن بە چوار دەبن بە دار هێندێ کورت و هێندێ درێژ وەکوو چنار",
         delay: 100,
-        duration: 6500,
+        duration: 7500,
       },
       {
         text: "لای من وابوو ئەوین و دڵ، جوانی و پاکی نابن بە چوار دەبن بە یار لە لای دڵدار",
-        delay: 2400,
-        duration: 6700,
+        delay: 2000,
+        duration: 8400,
       },
       {
         text: "ئەو هەمووەی وا دوو بە دوو دەبن بە یەک نابن بە چوار یەکجار زۆرن، بەڵام لە کوێ دێنە ژمار",
@@ -62,7 +62,7 @@ class CulturalExperience {
       {
         text: "تەنیا ئەوەندەی دەزانم ئەگەر لەشم سەد پارچەکەن بمدەنە ژێر گوولە و ڕەگبار بچمە سەردار، قسەی دڵم دێتە سەرزار",
         delay: 100,
-        duration: 8700,
+        duration: 9500,
       },
       {
         text: ".کوردستانم هەر ووڵاتێکەو نابێت بە چوار",
@@ -100,6 +100,10 @@ class CulturalExperience {
     // Listen for unity event from calculator
     Utils.events.on("unity", () => this.start());
 
+    // Listen for audio events to sync text
+    Utils.events.on("audioStarted", () => this.beginSequence());
+    Utils.events.on("audioDisabled", () => this.beginSequence());
+
     // Close button
     if (this.closeBtn) {
       this.closeBtn.addEventListener("click", () => this.end());
@@ -124,15 +128,17 @@ class CulturalExperience {
     this.overlay.classList.add("active");
     this.overlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+  }
+
+  async beginSequence() {
+    if (!this.isActive || this.sequenceStarted) return;
+    this.sequenceStarted = true;
 
     // Start progress bar
     this.startProgress();
 
     // Start poetry sequence
     await this.showPoetry();
-
-    // Show about section at end
-    this.showAbout();
   }
 
   async showPoetry() {
@@ -164,6 +170,9 @@ class CulturalExperience {
 
       this.currentVerseIndex++;
     }
+
+    // Show about section at end
+    this.showAbout();
   }
 
   startProgress() {
@@ -212,6 +221,7 @@ class CulturalExperience {
     this.poetryLine.classList.remove("visible", "fading");
     this.progressBar.style.width = "0";
     this.aboutSection.classList.remove("visible");
+    this.sequenceStarted = false;
   }
 }
 
